@@ -9,6 +9,7 @@ import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../common/const/data.dart';
+
 part 'restaurant_repository.g.dart';
 
 final restaurantRepositoryProvider = Provider<RestaurantRepository>((ref) {
@@ -26,7 +27,7 @@ abstract class RestaurantRepository {
   factory RestaurantRepository(Dio dio, {String baseUrl}) =
       _RestaurantRepository;
 
-  // 나머지는 path에 넣어준다
+  // http://$ip/restaurant/
   @GET('/')
   @Headers({
     'accessToken': 'true',
@@ -35,6 +36,7 @@ abstract class RestaurantRepository {
     @Queries() PaginationParams? paginationParams = const PaginationParams(),
   });
 
+  // http://$ip/restaurant/:id
   @GET('/{id}')
   @Headers({
     'accessToken': 'true',
